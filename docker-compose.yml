@@ -1,0 +1,17 @@
+networks:
+  api-medidor:
+    driver: bridge
+
+services:
+  postgresql:
+    image: 'bitnami/postgresql:latest'
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=db_medidor
+    volumes:
+      - ./data:/bitnami/postgresql
+    networks:
+      - api-medidor
