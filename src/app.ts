@@ -1,13 +1,18 @@
 import express from 'express'
 import cors from 'cors'
 import 'dotenv/config'
-import { imageRoutes } from './controllers/images/routes'
-
 export const app = express()
-app.use(express.json())
+
+import upload from './controllers/measure/upload'
+import list from './controllers/measure/list'
+import confirm from './controllers/measure/confirm'
+
+app.use(express.json({ limit: '200mb' }))
 app.use(cors())
 
-app.use('/upload', imageRoutes)
+app.post('/upload', upload)
+app.patch('/confirm', confirm)
+app.get('/:customer_code/list', list)
 
 app.listen(process.env.PORT, () => {
   console.log('servidor online está rodando na porta: ', process.env.PORT)

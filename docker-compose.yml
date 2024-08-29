@@ -11,7 +11,5 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=db_medidor
-    volumes:
-      - ./data:/bitnami/postgresql
     networks:
       - api-medidor
