@@ -5,18 +5,25 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest",
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/app.ts",
+    "start": "node build/app.js",
+    "build": "tsup src --out-dir build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/generative-ai": "^0.17.1",
     "@prisma/client": "^5.19.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "js-base64": "^3.7.7",
+    "tsup": "^8.2.4",
     "tsx": "^4.19.0",
-    "vitest": "^2.0.5"
+    "vitest": "^2.0.5",
+    "zod": "^3.23.8",
+    "zod-validation-error": "^3.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",

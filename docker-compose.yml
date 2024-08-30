@@ -1,17 +1,24 @@
-networks:
-  api-medidor:
-    driver: bridge
-
 services:
-  postgresql:
-    image: 'bitnami/postgresql:latest'
+  backend:
+    depends_on:
+      - database
+    image: gustavocostago/api-medidor:latest
+    env_file:
+      - .env
+    ports:
+      - 25000:25000
+    networks:
+      - app-network
+  database:
+    image: bitnami/postgresql
     ports:
       - 5432:5432
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=db_medidor
-    volumes:
-      - ./data:/bitnami/postgresql
     networks:
-      - api-medidor
+      - app-network
+networks:
+  app-network:
+    external: false
