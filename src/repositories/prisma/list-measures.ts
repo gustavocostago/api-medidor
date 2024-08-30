@@ -1,9 +1,14 @@
+import { MeasureType } from '@prisma/client'
 import { prisma } from '../../lib/prisma'
 
-export async function listMeasures(customer_code: string) {
+export async function listMeasures(
+  customer_code: string,
+  measure_type?: MeasureType
+) {
   const measures = await prisma.measure.findMany({
     where: {
       customer_code,
+      measure_type,
     },
     select: {
       measure_uuid: true,
@@ -14,5 +19,6 @@ export async function listMeasures(customer_code: string) {
       image_url: true,
     },
   })
+  if (measures.length === 0) return null
   return measures
 }

@@ -4,7 +4,7 @@ import { writeFileSync, unlinkSync } from 'fs'
 
 export default async function geminiApi(base64: string) {
   const key = process.env.GEMINI_API_KEY
-  if (!key) throw new Error()
+  if (!key) throw new Error('GEMINI_API_KEY NOT FOUND')
 
   const fileManager = new GoogleAIFileManager(key)
   const buffer = Buffer.from(base64, 'base64')
@@ -13,14 +13,8 @@ export default async function geminiApi(base64: string) {
     mimeType: 'image/jpeg',
     displayName: 'medidor',
   })
-
-  // console.log(
-  //   `Uploaded file ${uploadResponse.file.displayName} as: ${uploadResponse.file.uri}`
-  // )
-
   const getResponse = await fileManager.getFile(uploadResponse.file.name)
   const image_url = getResponse.uri
-  // console.log(`Retrieved file ${getResponse.displayName} as ${getResponse.uri}`)
   const genAI = new GoogleGenerativeAI(key)
 
   const model = genAI.getGenerativeModel({
@@ -37,7 +31,6 @@ export default async function geminiApi(base64: string) {
       text: 'faça a leitura desse medidor e me informe a medida lida, responda em pt-br',
     },
   ])
-  // console.log(result.response.text())
   unlinkSync('imagem.jpg')
   const numsStr = result.response.text().replace(/[^0-9]/g, '')
   const measure_value = parseInt(numsStr)

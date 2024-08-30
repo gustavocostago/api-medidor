@@ -13,3 +13,25 @@ services:
       - POSTGRES_DB=db_medidor
     networks:
       - api-medidor
+# services:
+#   backend:
+#     depends_on:
+#       - database
+#     image: gustavocostago/api-medidor:latest
+#     ports:
+#       - 25000:25000
+#     networks:
+#       - app-network
+#   database:
+#     image: bitnami/postgresql
+#     ports:
+#       - 5432:5432
+#     environment:
+#       - POSTGRES_USER=admin
+#       - POSTGRES_PASSWORD=password
+#       - POSTGRES_DB=db_medidor
+#     networks:
+#       - app-network
+# networks:
+#   app-network:
+#     external: false

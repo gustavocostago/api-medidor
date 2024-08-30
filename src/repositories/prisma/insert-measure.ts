@@ -1,9 +1,5 @@
+import { MeasureType } from '../../entities/measure'
 import { prisma } from '../../lib/prisma'
-
-enum MeasureType {
-  WATER = 'WATER',
-  GAS = 'GAS',
-}
 export async function insertMeasure(
   customer_code: string,
   image_url: string,
