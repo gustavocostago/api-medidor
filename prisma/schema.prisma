@@ -4,7 +4,9 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://admin:password@database:5432/db_medidor"
+  //O correto nesse caso é adicionar uma váriavel de ambiente DATABASE_URL
+  // porém como a descrição do teste deixou claro que o script de teste só iria passar a KEY, deixei setado o banco do ambiente de dev
 }
 
 model Measure{
