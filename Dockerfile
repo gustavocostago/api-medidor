@@ -11,3 +11,4 @@ RUN npx prisma generate
 
 CMD ["sh", "-c", "npx prisma db push && node build/app.js"]
 EXPOSE 25000
+

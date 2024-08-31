@@ -14,6 +14,6 @@ app.post('/upload', upload)
 app.patch('/confirm', confirm)
 app.get('/:customer_code/list', list)
 
-app.listen(process.env.PORT, () => {
-  console.log('servidor online está rodando na porta: ', process.env.PORT)
+app.listen(25000, () => {
+  console.log('servidor online está rodando na porta: 25000')
 })
